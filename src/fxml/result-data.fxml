@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DataResult">
+   <children>
+      <VBox alignment="CENTER" spacing="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="548.0" prefWidth="1014.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="469.0" prefWidth="304.0" spacing="5.0">
+                     <children>
+                        <TableView fx:id="tblStaticTelma" prefHeight="452.0" prefWidth="270.0">
+                          <columns>
+                            <TableColumn fx:id="clmSpeed" prefWidth="112.0" text="Скорость&#10; об/мин" />
+                            <TableColumn fx:id="clmTorque" prefWidth="95.0" text="Момент &#10;кг*м" />
+                              <TableColumn fx:id="clmPower" prefWidth="92.0" text="Мощность&#10;ЛС" />
+                          </columns>
+                        </TableView>
+                        <Label text="Точка MAX момента ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label text="M, кг*м:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="tfMaxTorq" editable="false" prefHeight="30.0" prefWidth="73.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="N, об/мин:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="tfSpeedTorq" editable="false" prefHeight="30.0" prefWidth="66.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <Label text="Точка MAX мощности">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <Label text="P, ЛС:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="tfMaxPower" editable="false" prefHeight="30.0" prefWidth="90.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                              <Label text="N, об/мин:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="tfSpeedPower" editable="false" prefHeight="30.0" prefWidth="76.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Имя файла:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="tfFileName" prefHeight="30.0" prefWidth="208.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="20.0">
+                           <children>
+                              <Button fx:id="btnSaveToFile" mnemonicParsing="false" text="Сохранить данные">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnSaveScreen" mnemonicParsing="false" text="Сохранить график">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="538.0" prefWidth="688.0" spacing="5.0">
+                     <children>
+                        <LineChart fx:id="lineChart" alternativeRowFillVisible="false" animated="false" axisSortingPolicy="NONE" createSymbols="false" horizontalZeroLineVisible="false" prefHeight="452.0" prefWidth="600.0">
+                          <xAxis>
+                            <NumberAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </LineChart>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="80.0" prefWidth="354.0">
+                                 <children>
+                                    <HBox alignment="CENTER" spacing="10.0">
+                                       <children>
+                                          <Label text="КПД трансмиссии">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tfEfficiency" prefHeight="25.0" prefWidth="87.0" text="1.0">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" spacing="10.0">
+                                       <children>
+                                          <TextField fx:id="tfFileToLoad" editable="false" prefHeight="29.0" prefWidth="163.0" promptText="Имя файла...">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </TextField>
+                                          <Button fx:id="btnFileChooser" mnemonicParsing="false" text="Выберите файл данных..." />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="80.0" prefWidth="318.0" spacing="10.0">
+                                 <children>
+                                    <HBox alignment="CENTER" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="btnDelBefore" mnemonicParsing="false" text="Удалить ДО" />
+                                          <TextField fx:id="tfDelBefore" prefHeight="25.0" prefWidth="87.0">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label text="N, об/мин">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="btnDelAfter" mnemonicParsing="false" text="Удалить ПОСЛЕ" />
+                                          <TextField fx:id="tfDelAfter" prefHeight="25.0" prefWidth="87.0">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label text="N, об/мин">
+                                             <font>
+                                                <Font size="13.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button fx:id="btnClose" mnemonicParsing="false" text="Закрыть">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

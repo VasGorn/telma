@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import eu.hansolo.medusa.Gauge?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.ToggleSwitch?>
+
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+   <children>
+      <HBox fx:id="mainPane" alignment="CENTER" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: #DDDDDD;">
+         <children>
+            <VBox alignment="CENTER" prefHeight="695.0" prefWidth="350.0" spacing="5.0">
+               <children>
+                  <Gauge fx:id="ggEngineSpeed" decimals="0" lcdDesign="GREEN" maxValue="9000.0" prefHeight="165.0" prefWidth="152.0" />
+                  <Label text="Скорость двигателя, &#10;об/мин" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <Gauge fx:id="ggEngineTorque" lcdDesign="GREEN" maxValue="120.0" prefHeight="172.0" prefWidth="152.0" skinType="DIGITAL" />
+                  <Label text="Момент двигателя, &#10;кг*м" textAlignment="CENTER">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+                  <Gauge fx:id="ggEnginePower" decimals="2" maxMeasuredValue="9000.0" maxValue="9000.0" minMeasuredValue="0.0" prefHeight="82.0" prefWidth="152.0" skinType="LCD" />
+                  <Label text="Мощность, ЛС">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="684.0" prefWidth="1041.0">
+               <children>
+                  <HBox prefHeight="678.0" prefWidth="1041.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="657.0" prefWidth="850.0">
+                           <children>
+                              <LineChart fx:id="lineChart" alternativeRowFillVisible="false" animated="false" axisSortingPolicy="NONE" createSymbols="false" horizontalZeroLineVisible="false" prefHeight="454.0" prefWidth="584.0" title="График параметров двигателя">
+                                <xAxis>
+                                  <NumberAxis animated="false" autoRanging="false" side="BOTTOM" fx:id="xAxis" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="yAxis" animated="false" side="LEFT" />
+                                </yAxis>
+                              </LineChart>
+                              <HBox alignment="CENTER" prefHeight="196.0" prefWidth="572.0" spacing="10.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="196.0" prefWidth="290.0" spacing="10.0">
+                                       <children>
+                                          <ToggleSwitch fx:id="tglBtnWriteData" alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="196.0" text="Режим записи данных" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </ToggleSwitch>
+                                          <Button fx:id="btnWriteData" mnemonicParsing="false" text="Окно данных">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <HBox alignment="CENTER" spacing="80.0">
+                                             <children>
+                                                <Button fx:id="btnStartServer" mnemonicParsing="false" text="Запуск">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Button>
+                                                <Button fx:id="btnExit" mnemonicParsing="false" text="Выйти">
+                                                   <font>
+                                                      <Font size="16.0" />
+                                                   </font>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                    <VBox alignment="CENTER" prefHeight="196.0" prefWidth="235.0" spacing="5.0">
+                                       <children>
+                                          <HBox alignment="CENTER">
+                                             <children>
+                                                <Label prefHeight="52.0" prefWidth="167.0" text="Скорость двигателя, &#10;об/мин:" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="tfRefEngine" alignment="CENTER" prefHeight="33.0" prefWidth="107.0" style="-fx-background-color: #FFFFFF;" text="0" />
+                                             </children>
+                                          </HBox>
+                                          <Button fx:id="btnCalc" mnemonicParsing="false" text="Тарировать">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Button>
+                                          <HBox alignment="CENTER" spacing="5.0">
+                                             <children>
+                                                <Label prefHeight="21.0" prefWidth="120.0" text="Коэф. передачи:" textAlignment="CENTER">
+                                                   <font>
+                                                      <Font size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="tfGearRatio" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: #FFFFFF;" text="1" />
+                                             </children>
+                                             <padding>
+                                                <Insets top="10.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </VBox>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER">
+                           <children>
+                              <Label text="Параметры полуосей машины">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="350.0" prefWidth="700.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="500.0" prefWidth="280.0">
+                                       <children>
+                                          <Gauge fx:id="ggLeftSpeed" decimals="0" lcdDesign="GREEN" maxValue="3000.0" prefHeight="120.0" prefWidth="100.0" skinType="QUARTER" />
+                                          <Label text="Скорость левого&#10;колеса, об/мин" textAlignment="CENTER">
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Gauge fx:id="ggLeftTorque" lcdDesign="GREEN" maxValue="200.0" prefHeight="120.0" prefWidth="100.0" skinType="DIGITAL" />
+                                          <Label text="Момент левого&#10;колеса, кг*м" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <ImageView fitHeight="307.0" fitWidth="139.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../res/clipart-car-from-above-5.jpg.png" />
+                                       </image>
+                                    </ImageView>
+                                    <VBox alignment="CENTER" prefHeight="500.0" prefWidth="280.0">
+                                       <children>
+                                          <Gauge fx:id="ggRightSpeed" decimals="0" lcdDesign="GREEN" maxValue="3000.0" prefHeight="120.0" prefWidth="100.0" skinType="QUARTER" />
+                                          <Label prefHeight="52.0" prefWidth="125.0" text="Скорость правого&#10;колеса, об/мин" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <Gauge fx:id="ggRightTorque" lcdDesign="GREEN" maxValue="200.0" prefHeight="120.0" prefWidth="100.0" skinType="DIGITAL" />
+                                          <Label text="Момент правого&#10;колеса, кг*м" textAlignment="CENTER">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font>
+                                             <padding>
+                                                <Insets bottom="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
+                              </HBox>
+                              <Separator prefWidth="200.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding></Separator>
+                              <HBox alignment="CENTER" layoutX="15.0" layoutY="445.0" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="21.0" prefWidth="202.0" text="Стартовая скорость, об/мин:" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="tfStartSpeed" alignment="CENTER" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF;" text="0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="21.0" prefWidth="202.0" text="Финальная скорость, об/мин:" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="tfFinalSpeed" alignment="CENTER" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF;" text="0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="21.0" prefWidth="202.0" text="Время темпа, c:" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="tfRiseTime" alignment="CENTER" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF;" text="0" />
+                                 </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <ToggleSwitch fx:id="tglRun" alignment="CENTER" prefHeight="21.0" prefWidth="281.0" text="Режим замера момента и мощности">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></ToggleSwitch>
+                                 </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </HBox>
+                              <Separator prefWidth="200.0">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Separator>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <ToggleSwitch fx:id="tglStable" alignment="CENTER" prefHeight="25.0" prefWidth="278.0" text="Стабилизация на скорости, об/мин" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font></ToggleSwitch>
+                                    <TextField fx:id="tfStable" alignment="CENTER" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #FFFFFF;" text="0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <ProgressIndicator fx:id="progressIndicator" scaleX="0.5" scaleY="0.5" visible="false" />
+   </children>
+</StackPane>
